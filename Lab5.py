@@ -1,5 +1,7 @@
 import math
 import numpy as np
+import matplotlib.pyplot as plt
+
 def task1_1():
     a=0.3
     b=-21.17
@@ -55,9 +57,44 @@ def task1_2():
 def task2():
     pass
 
-def task3():
-    pass
+def task3_1():
+    t_start=2
+    t_end=3
+    delta_t=0.05
 
+    t_val=np.arange(t_start, t_end+delta_t, delta_t)
+    s_val=[]
+
+    for t in t_val:
+        s=math.log(math.fabs(1.3+t))-math.exp(t)
+        s_val.append(s)
+
+    for t, s in zip(t_val, s_val):
+        print(f"t = {t:.2f}, s = {s:.2f}")
+
+    max_s=max(s_val)
+    min_s=min(s_val)
+    mean_s=np.mean(s_val)
+
+    print(f"Max value: {max_s:.2f}")
+    print(f"Min value: {min_s:.2f}")
+    print(f"Average value: {mean_s:.2f}")
+
+    sorted_s_values=sorted(s_val)
+
+    plt.figure(figsize=(10,6))
+    plt.plot(t_val, s_val, label="f(t)", marker='o')
+    plt.axhline(mean_s, color='red', linestyle='--', label="Average value")
+    plt.xlabel("t")
+    plt.ylabel("f(t)")
+    plt.title("Graph of a function f(t)")
+    plt.grid(True)
+    plt.legend()
+
+    plt.show()
+
+def task3_2():
+    pass
 def isInt(value):
     try:
         int(value)
@@ -78,8 +115,9 @@ def main():
         print("1.task 1.1 the equation (math)")
         print("2.task 1.2 matrix (numpy)")
         print("3.task 2")
-        print("4.task 3")
-        print("5.exit")
+        print("4.task 3_1 (matplotlib)")
+        print("5.task 3_2 (matplotlib several graph)")
+        print("6.exit")
 
         ch=inputInt("Choose: ")
 
@@ -90,8 +128,10 @@ def main():
         elif ch==3:
             task2()
         elif ch==4:
-           task3()
+           task3_1()
         elif ch == 5:
+           task3_2()
+        elif ch == 6:
             break
         else:
             print("Incorrect input")
