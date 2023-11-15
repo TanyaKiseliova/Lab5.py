@@ -1,6 +1,7 @@
 import math
 import numpy as np
 import matplotlib.pyplot as plt
+import pandas as pd
 
 def task1_1():
     a=0.3
@@ -55,7 +56,10 @@ def task1_2():
     else:
         print("The chech wasn't successful, the values aren't approximately equal")
 def task2():
-    pass
+    f=pd.read_csv('test.csv')
+    f_sample=f.sample(1000, random_state=42)
+    missing_values=f_sample.isnull().sum()
+    print("Missings: ", missing_values)
 
 def task3_1():
     t_start=2
